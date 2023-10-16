@@ -1,0 +1,31 @@
+    <!doctype html>
+    <html lang="kr">
+    {% include 'head.html' %}
+    <body>
+        <div class="container mt-4 mb-5">
+            {% include 'nav.html' %}
+        </div>    
+        <div class="container">
+            <div class="row">
+                {% for result in results %}
+                    <div class="col-md-3">
+                        <div class="card mb-4">
+                            <img src="{{ result.img }}" class="card-img-top">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ result.store_name }}</h5>
+                                <p class="card-text">{{ result.plus }}</p>
+                                <p class="card-text"><small>{{ result.name }}</small></p>
+                                <p class="card-text"><small>{{ result.price }}원</small></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+    </html>

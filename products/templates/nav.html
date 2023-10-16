@@ -1,26 +1,29 @@
-<nav class="container navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Home</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="/mypage">mypage</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/write">write</a>
-        </li>
-      </ul>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="/login">로그인</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/signin">회원가입</a>
-            </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">메인페이지</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <form class="d-flex" method="POST" action="{% url 'search' %}">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+      <div style="width: 3px"></div>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<script>
+  // 페이지가 로드될 때 저장된 검색어를 불러와서 입력란에 설정
+  window.onload = function() {
+      var savedSearch = localStorage.getItem('savedSearch');
+      if (savedSearch) {
+          document.querySelector('input[name="search"]').value = savedSearch;
+      }
+  }
+  
+  // 검색 버튼 클릭 시 검색어를 저장
+  document.querySelector('button[type="submit"]').addEventListener('click', function() {
+      var searchInput = document.querySelector('input[name="search"]');
+      localStorage.setItem('savedSearch', searchInput.value);
+  });
+  </script>

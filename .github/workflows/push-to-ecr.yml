@@ -29,8 +29,8 @@ jobs:
 
     - name: Build and tag Docker image
       run: |
-        docker build -t store-app:latest .
-        docker tag store-app:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/store-app
+        docker build -t store-app .
+        docker tag store-app ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/store-app
 
     - name: Push Docker image to ECR
       run: |

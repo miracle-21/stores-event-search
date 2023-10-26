@@ -37,7 +37,3 @@ jobs:
       - name: Push Docker image to ECR
         run: |
           docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/store-ecr:latest
-
-          git config --global user.name "miracle-21"
-          git config --global github.token ${{ secrets.MY_GITHUB_TOKEN }}
-          git push -u origin main

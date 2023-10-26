@@ -1,11 +1,14 @@
 FROM python:3.8
 
-WORKDIR /app
+# Install app dependencies
+COPY requirements.txt /app/
+RUN pip install -r /app/requirements.txt
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+# Copy app code
+COPY . /app/
 
-COPY . .
+# Run migrations
+RUN python /app/manage.py migrate
 
-EXPOSE 8000
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "myapp.wsgi:application"]
+# Start app
+CMD ["python", "/app/manage.py", "runserver", "0.0.0.0:8000"]

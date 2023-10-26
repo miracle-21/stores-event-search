@@ -7,8 +7,5 @@ RUN pip install -r /app/requirements.txt
 # Copy app code
 COPY . /app/
 
-# Run migrations
-RUN python /app/manage.py migrate
-
 # Start app
 CMD ["python", "/app/manage.py", "runserver", "0.0.0.0:8000"]

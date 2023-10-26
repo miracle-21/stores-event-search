@@ -38,27 +38,6 @@ jobs:
         run: |
           docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/store-ecr:latest
 
-      - name: Checkout for Kustomize repository
-        uses: actions/checkout@v2
-        with:
-          repository: miracle21/argocd-stores-event-search
-          ref: main
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
-          path: argocd-stores-event-search
-
-      # kustomize 로 image tag 값 변경
-      - name: Update Kubernetes resources
-        run: |
-          pwd
-          cd argocd-stores-event-search/overlays/prd/ 
-          kustomize edit set image ${{ secrets.AWS_ECR_URL }}
-          cat kustomization.yaml
-
-      # 수정된 kustomization.yaml 파일 commit push
-      - name: Commit minifest files
-        run: |
-          cd argocd-stores-event-search
-          git config --global user.email "miraculum95@gmail.com"
           git config --global user.name "miracle-21"
           git config --global github.token ${{ secrets.MY_GITHUB_TOKEN }}
           git push -u origin main
